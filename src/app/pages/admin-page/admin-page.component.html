@@ -1,0 +1,9 @@
+<form [formGroup]="createFormGroup()" (ngSubmit)="onSubmit()">
+  <label>category</label>
+  <input formControlName="category">
+  <label>theme</label>
+  <input formControlName="theme">
+  <label>body</label>
+  <input formControlName="body">
+  <input type="submit" [disabled]="createNewTextForm">
+</form>

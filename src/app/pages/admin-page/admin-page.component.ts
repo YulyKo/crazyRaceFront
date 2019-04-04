@@ -10,21 +10,8 @@ export class AdminPageComponent implements OnInit {
 
   createNewTextForm: FormGroup;
 
-  constructor() {
-    this.createNewTextForm = this.createFormGroup();
-  }
-
-  createFormGroup() {
-    return new FormGroup({
-      category: new FormControl(),
-      theme: new FormControl(),
-      body: new FormControl()
-    });
-  }
+  constructor() {}
 
   ngOnInit() {}
 
-  onSubmit(  ) {
-    console.log(this.createNewTextForm.value);
-  }
 }

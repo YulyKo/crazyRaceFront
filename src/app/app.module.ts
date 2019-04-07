@@ -6,6 +6,14 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { GamePageComponent } from './pages/game-page/game-page.component';
 import { FirstPageComponent } from './pages/first-page/first-page.component';
+import { RouterModule, Routes } from "@angular/router";
+
+const routes: Routes = [
+  { path: 'home', component: FirstPageComponent },
+  { path: 'game', component: GamePageComponent },
+  { path: 'admin', component: AdminPageComponent },
+  { path: '**', component: AppComponent }
+];
 
 @NgModule({
   declarations: [
@@ -17,7 +25,8 @@ import { FirstPageComponent } from './pages/first-page/first-page.component';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

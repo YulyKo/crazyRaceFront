@@ -1,9 +1,31 @@
-<form>
-  <label>category</label>
-  <input>
-  <label>theme</label>
-  <input>
-  <label>body</label>
-  <input>
-  <input type="submit">
-</form>
+<main class="container">
+  <form class="form">
+    <div class="form_container">
+      <div class="form_container__zone">
+        <label class="form_part form_part__text">category</label>
+        <input class="form_part form_part__input form_part__input--data" type="text">
+        <select class="form_part form_part__input form_part__input--data" name="country">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+        </select>
+      </div>
+      <div class="form_container__zone">
+        <label class="form_part form_part__text">theme</label>
+        <input class="form_part form_part__input form_part__input--data" type="text">
+        <select class="form_part form_part__input form_part__input--data" name="country">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+        </select>
+      </div>
+    </div>
+    <div class="form_container__zone form_container__zone--textarea">
+      <label class="form_part form_part__text">body</label>
+      <textarea class="form_part form_part__input--textarea" type="text"></textarea>
+    </div>
+    <div class="container_submit">
+      <input class="form_part form_part__submit" type="submit" value="Save">
+    </div>
+  </form>
+</main>

@@ -1,9 +1,9 @@
 <main class="container">
-  <form class="form">
+  <form class="form"  [formGroup]="createNewTextForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="form_container">
       <div class="form_container__zone">
         <label class="form_part form_part__text">category</label>
-        <input class="form_part form_part__input form_part__input--data" type="text">
+        <input class="form_part form_part__input form_part__input--data" type="text"  formControlName="category">
         <select class="form_part form_part__input form_part__input--data" name="country">
           <option value="australia">Australia</option>
           <option value="canada">Canada</option>
@@ -12,7 +12,7 @@
       </div>
       <div class="form_container__zone">
         <label class="form_part form_part__text">theme</label>
-        <input class="form_part form_part__input form_part__input--data" type="text">
+        <input class="form_part form_part__input form_part__input--data" type="text" formControlName="theme">
         <select class="form_part form_part__input form_part__input--data" name="country">
           <option value="australia">Australia</option>
           <option value="canada">Canada</option>
@@ -22,10 +22,10 @@
     </div>
     <div class="form_container__zone form_container__zone--textarea">
       <label class="form_part form_part__text">body</label>
-      <textarea class="form_part form_part__input--textarea" type="text"></textarea>
+      <textarea class="form_part form_part__input--textarea" type="text" formControlName="body"></textarea>
     </div>
     <div class="container_submit">
-      <input class="form_part form_part__submit" type="submit" value="Save">
+      <input class="form_part form_part__submit" type="submit" value="Save" [disabled]="createNewTextForm.pristine">
     </div>
   </form>
 </main>

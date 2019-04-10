@@ -1,17 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ServiceService } from '../../service.service';
 
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.css']
 })
-export class AdminPageComponent implements OnInit {
 
+export class AdminPageComponent implements OnInit {
   createNewTextForm: FormGroup;
 
-  constructor() {}
+  constructor( private formBuilder: FormBuilder,
+               private configServers: ServiceService ) {
+    this.createNewTextForm = this.createFormGroup();
+  }
 
-  ngOnInit() {}
+  createFormGroup() {
+    return new FormGroup({
+      category: new FormControl(),
+      theme: new FormControl(),
+      body: new FormControl()
+    });
+  }
+
+  ngOnInit() {
+  }
+
+  onSubmit(  ) {
+    console.log(this.createNewTextForm.value);
+    this.configServers.postText(this.createNewTextForm.value);
+  }
 
 }

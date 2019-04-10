@@ -1,2 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~normalize.css/normalize.css';
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,800');
+
+* {
+  color: #ffe58d;
+  font-weight: 400;
+  letter-spacing: 2px;
+}

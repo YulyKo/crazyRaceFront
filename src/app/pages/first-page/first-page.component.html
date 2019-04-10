@@ -3,8 +3,8 @@
 
     <nav class="menu">
       <ul class="menu_list">
-        <li><a href="#" class="link link_about">About us</a></li>
-        <li><a href="#" class="link link_login">Log in</a></li>
+        <li><a href="#" class="link">About us</a></li>
+        <li><a href="#" class="link">Log in</a></li>
       </ul>
     </nav>
 
@@ -14,8 +14,13 @@
 
   </div>
 </div>
-<!--<form id="form" class="page__global_modal-window">-->
-  <!--<input formControlName="category">-->
-  <!--<input formControlName="theme">-->
-  <!--<a routerLink="/game" type="submit">Start to play</a>-->
-<!--</form>-->
+<div class="page__global_modal-window">
+  <form id="form" class="form">
+    <div class="inputs">
+      <input class="input input_category" formControlName="category" >
+      <input class="input input_theme" formControlName="theme">
+    </div>
+    <input class="link link_submit text-submit" routerLink="/game" type="submit" value="Start to play ">
+    <!--<p class="text-submit">Start to play</p>-->
+  </form>
+</div>

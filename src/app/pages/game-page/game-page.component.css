@@ -45,6 +45,7 @@
   height: 50%;
   padding-bottom: 1%;
   display: flex;
+  justify-content: space-between;
 }
 
 .container_grass {

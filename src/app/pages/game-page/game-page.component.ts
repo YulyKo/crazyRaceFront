@@ -21,8 +21,9 @@ export class GamePageComponent implements OnInit {
   finish;
   timeOfThisLatter;
   timeOfLastLatter: number;
-  speedNow = 270;
-  positionRaf = 0;
+  speedCar = 5;
+  speedOpponent = 5;
+  positionCar = 0;
   positionOpponent = 0;
   positionBackground = 0;
 
@@ -54,8 +55,12 @@ export class GamePageComponent implements OnInit {
     if (this.letters[0].symbol[this.indexLetter] === this.typedLetter) {
       this.letters[0].correct = true;
       this.timeOfThisLatter = Date.now();
+      if (this.indexLetter === this.letters[0].symbol.length - 1) {
+        this.finish = this.timeOfThisLatter;
+      }
       // console.log(this.timeOfThisLatter);
-      this.speedNow += 1000 / (this.timeOfThisLatter - this.timeOfLastLatter);
+      this.speedCar += 1000 / (this.timeOfThisLatter - this.timeOfLastLatter);
+      // Do: sent to server
 // console.log('symbol:  ' + this.letters[0].symbol[this.indexLetter] + '   ' + this.speedNow + ' = 1000 /' + this.timeOfThisLatter + ' - ' + this.timeOfLastLatter);
       this.timeOfLastLatter = this.timeOfThisLatter;
       this.indexLetter++;
@@ -74,33 +79,41 @@ export class GamePageComponent implements OnInit {
 
   move() {
     this.checkPosition();
-    this.positionOpponent += Math.round(Math.random() * 10 + 5);
-    // this.transformOfBlocks();
-    requestAnimationFrame(() => this.move());
-    this.speedNow -= 0.05 * this.speedNow;
-    if (this.speedNow < 0) {
-      this.speedNow = 0;
+    if (this.finish || this.indexLetter === 0) {
+      this.speedCar -= 0.1;
+      if (this.speedCar < 0) {
+        this.speedCar = 0;
+        this.speedOpponent = 0;
+      }
     }
+    this.transformOfBlocks();
+    requestAnimationFrame(() => this.move());
   }
 
   checkPosition() {
     const MAX_POSITION = 460;
-    const speed = Math.round(this.speedNow / 10);
-    if (this.positionRaf > MAX_POSITION) {
+    const speed = this.speedCar; // this may contain const for animation (now remove it)
+    this.speedOpponent = Math.random() * 5 + 5;
+    if (this.positionCar > MAX_POSITION) {
       this.positionBackground -= speed;
+      this.positionOpponent += this.speedOpponent - speed;
     } else {
-      this.positionRaf += speed;
+      this.positionCar += speed;
+      this.positionOpponent += this.speedOpponent;
       console.log('math round:  ' + speed);
     }
   }
 
   transformOfBlocks() {
-    let x = 0;
+    /* let x = 0;
     setInterval(() => {
         x -= 1;
-        document.getElementById('background-tree').style.transform = `translateX(${ this.positionBackground }px)`;
-      }, 110);
-    document.getElementById('car').style.transform = `translateX(${ this.positionRaf }px)`;
-    document.getElementById('carOpponent').style.transform = `translateX(${ this.positionOpponent }px)`;
+        document.getElementById('background-tree').style.transform = `translateX(${ Math.round(this.positionBackground) }px)`;
+      }, 110); */
+
+    document.getElementById('background-tree').style.transform = `translateX(${ Math.round(this.positionBackground) }px)`;
+
+    document.getElementById('car').style.transform = `translateX(${ Math.round(this.positionCar) }px)`;
+    document.getElementById('carOpponent').style.transform = `translateX(${ Math.round(this.positionOpponent) }px)`;
   }
 }
